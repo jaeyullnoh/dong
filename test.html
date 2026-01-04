@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동연포장산업</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #2c5aa0;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2c5aa0 50%, #4a7bc8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #2c5aa0;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Section Common */
+        section {
+            padding: 100px 40px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            color: #2c5aa0;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c5aa0;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Products Section */
+        .products {
+            background: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #2c5aa0;
+        }
+
+        .product-info p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Service Section */
+        .service {
+            background: #f8f9fa;
+        }
+
+        .service-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .service-content h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c5aa0;
+        }
+
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-box .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .feature-box h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .feature-box p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 50px;
+            border-radius: 20px;
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #2c5aa0;
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .info-item span {
+            font-size: 20px;
+            color: #2c5aa0;
+            font-weight: 600;
+        }
+
+        .contact-form {
+            background: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2c5aa0;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            padding: 60px 40px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-about h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .service-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">동연포장산업</div>
+            <ul class="nav-menu">
+                <li><a href="#about">회사소개</a></li>
+                <li><a href="#products">제품소개</a></li>
+                <li><a href="#service">서비스</a></li>
+                <li><a href="#contact">고객지원</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>포장 솔루션의 선두주자</h1>
+            <p>혁신적인 포장 기술로 고객의 가치를 창출합니다</p>
+            <a href="#contact" class="hero-btn">상담 문의하기</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>동연포장산업</h2>
+                <p>고품질 포장재로 고객 만족을 실현합니다</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>신뢰와 품질의 동연포장산업</h3>
+                    <p>동연포장산업은 다양한 포장 제품을 생산하는 전문 기업입니다. 자동롤, 파우치, 스파우트 등 고객의 다양한 요구에 맞춘 맞춤형 포장 솔루션을 제공합니다.</p>
+                    <p>최첨단 설비와 숙련된 기술진을 바탕으로 최고 품질의 제품을 생산하며, 고객의 성공을 위한 최적의 파트너가 되겠습니다.</p>
+                    <p>광주광역시 광산구에 위치한 저희 공장에서는 엄격한 품질관리 시스템을 통해 신뢰할 수 있는 제품을 공급하고 있습니다.</p>
+                </div>
+                <div class="about-image">
+                    회사 전경
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>제품소개</h2>
+                <p>다양한 포장 솔루션을 제공합니다</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">자동롤</div>
+                    <div class="product-info">
+                        <h3>자동롤 (Roll Stock)</h3>
+                        <p>자동 포장기계에 최적화된 롤 형태의 포장재로 생산성과 효율성을 극대화합니다.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">스파우트</div>
+                    <div class="product-info">
+                        <h3>스파우트 (Spout)</h3>
+                        <p>액상 제품을 안전하게 담을 수 있는 스파우트 파우치로 편리성과 실용성을 제공합니다.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">삼방파우치</div>
+                    <div class="product-info">
+                        <h3>일반 삼방 파우치 (Zipper)</h3>
+                        <p>지퍼가 부착된 삼방 파우치로 재밀봉이 가능하여 제품 보관에 최적화되어 있습니다.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">변형파우치</div>
+                    <div class="product-info">
+                        <h3>변형 파우치 (Thomson)</h3>
+                        <p>특수한 형태와 디자인으로 제작된 파우치로 제품의 차별화를 극대화합니다.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">M방/박스파우치</div>
+                    <div class="product-info">
+                        <h3>M방 / 박스 파우치 (M Seal Bag)</h3>
+                        <p>대용량 제품 포장에 적합한 M방 파우치로 안정적인 보관과 운송이 가능합니다.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">스탠드파우치</div>
+                    <div class="product-info">
+                        <h3>스탠드 파우치 (Stand Up)</h3>
+                        <p>자립형 파우치로 진열 효과가 뛰어나며 다양한 제품에 활용 가능합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="service" class="service">
+        <div class="container">
+            <div class="section-title">
+                <h2>ONE-STOP SERVICE</h2>
+                <p>설계부터 생산까지 모든 과정을 책임집니다</p>
+            </div>
+            <div class="service-content">
+                <h3>맞춤형 포장 솔루션</h3>
+                <p>고객의 요구사항에 맞춘 설계, 제작, 생산, 납품까지 전 과정을 원스톱으로 제공합니다.</p>
+                <div class="service-features">
+                    <div class="feature-box">
+                        <div class="icon">1</div>
+                        <h4>설계</h4>
+                        <p>고객 맞춤형 디자인 및 구조 설계</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="icon">2</div>
+                        <h4>제작</h4>
+                        <p>최신 설비를 활용한 정밀 제작</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="icon">3</div>
+                        <h4>생산</h4>
+                        <p>대량 생산 시스템과 품질 관리</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="icon">4</div>
+                        <h4>납품</h4>
+                        <p>신속하고 안전한 제품 배송</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>고객지원</h2>
+                <p>언제든지 문의해 주세요</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>고객센터</h3>
+                    <div class="info-item">
+                        <strong>전화번호</strong>
+                        <span>062-716-8803</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>팩스</strong>
+                        <span>070-4032-7546</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>상담시간</strong>
+                        <span>AM 9:00 ~ PM 6:00</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>주소</strong>
+                        <span>광주광역시 광산구 손재로 392, 사동</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label>회사명</label>
+                            <input type="text" placeholder="회사명을 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <label>신청자명</label>
+                            <input type="text" placeholder="이름을 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <label>연락처</label>
+                            <input type="tel" placeholder="연락처를 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <label>이메일</label>
+                            <input type="email" placeholder="이메일을 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <label>문의내용</label>
+                            <textarea placeholder="문의하실 내용을 입력하세요"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">상담 신청하기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>동연포장산업</h3>
+                <p>회사명: (주)동연포장산업</p>
+                <p>대표: 방종갑</p>
+                <p>사업자등록번호: 161-60-00497</p>
+                <p>주소: 광주 광산구 손재로 392</p>
+                <p>대표번호: 062-716-8803</p>
+                <p>팩스: 070-4032-7546</p>
+            </div>
+            <div class="footer-links">
+                <h4>바로가기</h4>
+                <ul>
+                    <li><a href="#about">회사소개</a></li>
+                    <li><a href="#products">제품소개</a></li>
+                    <li><a href="#service">서비스</a></li>
+                    <li><a href="#contact">고객지원</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>고객지원</h4>
+                <ul>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">온라인 상담</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright ⓒ 2026 동연포장산업 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('상담 신청이 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
